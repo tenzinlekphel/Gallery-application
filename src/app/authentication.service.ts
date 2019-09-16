@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthenticationService {
 
   private: Observable<firebase.User>;
@@ -14,7 +15,6 @@ export class AuthenticationService {
   constructor(private afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
   }
-
 
   login(user: User) {
     return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
@@ -24,4 +24,9 @@ export class AuthenticationService {
     return this.afAuth.auth.signOut();
   }
 
+  authUser() {
+    return this.user;
+  }
+
 }
+
